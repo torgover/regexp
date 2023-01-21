@@ -1,4 +1,3 @@
-from pprint import pprint
 import csv
 import re
 
@@ -6,8 +5,6 @@ with open ('phonebook.csv', encoding='utf8') as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
     
-    
-    #pprint(contacts_list)
 
 def correct_name(rows):
     for employee in rows:
@@ -15,11 +12,10 @@ def correct_name(rows):
         return result
         
 
-
 def delete_duplicates(correct_name_list):
     without_dupli = []
     for comp in contacts_list:
-        for employee in contacts_list:
+        for employee in correct_name_list:
             if comp[0:2] == employee[0:2]:
                 list_employee = comp
                 comp = list_employee[0:2]
@@ -30,7 +26,6 @@ def delete_duplicates(correct_name_list):
                         comp.append(list_employee[i])
         if comp not in without_dupli:
             without_dupli.append(comp)
-
     return without_dupli
 
 
